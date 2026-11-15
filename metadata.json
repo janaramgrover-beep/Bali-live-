@@ -1,0 +1,6 @@
+{
+  "name": "Live TV",
+  "description": "Responsive Smart TV and Mobile IPTV streaming player with HLS.js playback, M3U playlist sorting, glassmorphism settings, and D-pad channel zapping.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,155 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  }
+
+  html,
+  body {
+    font-family: var(--font-sans);
+    background-color: #060b14;
+    color: #f1f5f9;
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  :fullscreen,
+  :-webkit-full-screen {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    background-color: #000 !important;
+  }
+}
+
+.font-mono-tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hide scrollbars cleanly for horizontal TV / Touch carousels while preserving scrollability */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Smart TV D-Pad Focus Ring */
+.tv-focusable:focus-visible {
+  outline: 2px solid #0077ff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0, 119, 255, 0.25);
+}
+
+/* Android TV Opening Splash Screen Animations */
+@keyframes splashZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.72);
+    filter: blur(8px);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(1.02);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes splashHaloPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes splashLightSweep {
+  0% {
+    transform: translateX(-120%) skewX(-22deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.55;
+  }
+  80% {
+    opacity: 0.45;
+  }
+  100% {
+    transform: translateX(220%) skewX(-22deg);
+    opacity: 0;
+  }
+}
+
+@keyframes splashTextReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+    letter-spacing: 0.36em;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 0.24em;
+  }
+}
+
+@keyframes splashProgress {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.animate-splash-zoom {
+  animation: splashZoomIn 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-splash-halo {
+  animation: splashHaloPulse 2.8s ease-in-out infinite;
+}
+
+.animate-splash-sweep {
+  animation: splashLightSweep 2.6s cubic-bezier(0.4, 0, 0.2, 1) 0.25s infinite;
+}
+
+.animate-splash-text {
+  opacity: 0;
+  animation: splashTextReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
+}
+
+.animate-splash-progress {
+  transform-origin: left center;
+  animation: splashProgress 2.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
